@@ -1,4 +1,4 @@
-# Copyright 2016-2023 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2016-2025 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -59,13 +59,13 @@ class _ConfBridgeConf:
             output.write('\n')
 
     def _format_bridge_profile(self, row):
-        yield f'[xivo-bridge-profile-{row.id}](wazo_default_bridge)'
+        yield f'[wazo-bridge-profile-{row.id}](wazo_default_bridge)'
         yield 'type = bridge'
         yield f'max_members = {row.max_users}'
         yield f'record_conference = {self._convert_bool(row.record)}'
 
     def _format_user_profile(self, row):
-        yield f'[xivo-user-profile-{row.id}](wazo_default_user)'
+        yield f'[wazo-user-profile-{row.id}](wazo_default_user)'
         yield 'type = user'
         yield f'quiet = {self._convert_bool(row.quiet_join_leave)}'
         yield f'announce_join_leave = {self._convert_bool(row.announce_join_leave)}'
@@ -76,7 +76,7 @@ class _ConfBridgeConf:
             yield f'music_on_hold_class = {row.music_on_hold}'
 
     def _format_admin_profile(self, row):
-        yield f'[xivo-admin-profile-{row.id}](xivo-user-profile-{row.id})'
+        yield f'[wazo-admin-profile-{row.id}](wazo-user-profile-{row.id})'
         yield 'admin = yes'
 
     def _convert_bool(self, option):
@@ -91,7 +91,7 @@ class _ConfBridgeConf:
             output.write(f'{line}\n')
 
     def _gen_default_user_menu(self):
-        yield '[xivo-default-user-menu]'
+        yield '[wazo-default-user-menu]'
         yield 'type = menu'
         yield '* = playback_and_continue({})'.format(
             '&'.join(
@@ -116,7 +116,7 @@ class _ConfBridgeConf:
         yield '9 = increase_talking_volume'
 
     def _gen_default_admin_menu(self):
-        yield '[xivo-default-admin-menu](xivo-default-user-menu)'
+        yield '[wazo-default-admin-menu](wazo-default-user-menu)'
         yield '* = playback_and_continue({})'.format(
             '&'.join(
                 [

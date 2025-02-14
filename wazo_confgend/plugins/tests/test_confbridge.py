@@ -1,4 +1,4 @@
-# Copyright 2016-2023 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2016-2025 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import unittest
@@ -29,12 +29,12 @@ class TestConfBridgeConf(unittest.TestCase):
         assert_config_equal(
             self.output.getvalue(),
             '''
-            [xivo-bridge-profile-1](wazo_default_bridge)
+            [wazo-bridge-profile-1](wazo_default_bridge)
             type = bridge
             max_members = 50
             record_conference = yes
 
-            [xivo-bridge-profile-2](wazo_default_bridge)
+            [wazo-bridge-profile-2](wazo_default_bridge)
             type = bridge
             max_members = 0
             record_conference = no
@@ -67,14 +67,14 @@ class TestConfBridgeConf(unittest.TestCase):
         assert_config_equal(
             self.output.getvalue(),
             '''
-            [xivo-user-profile-1](wazo_default_user)
+            [wazo-user-profile-1](wazo_default_user)
             type = user
             quiet = no
             announce_join_leave = no
             announce_user_count = no
             announce_only_user = no
 
-            [xivo-user-profile-2](wazo_default_user)
+            [wazo-user-profile-2](wazo_default_user)
             type = user
             quiet = yes
             announce_join_leave = yes
@@ -83,7 +83,7 @@ class TestConfBridgeConf(unittest.TestCase):
             music_on_hold_when_empty = yes
             music_on_hold_class = Music
 
-            [xivo-admin-profile-2](xivo-user-profile-2)
+            [wazo-admin-profile-2](wazo-user-profile-2)
             admin = yes
         ''',
         )
@@ -94,7 +94,7 @@ class TestConfBridgeConf(unittest.TestCase):
         assert_config_equal(
             self.output.getvalue(),
             '''
-        [xivo-default-user-menu]
+        [wazo-default-user-menu]
         type = menu
         * = playback_and_continue(dir-multi1&digits/1&confbridge-mute-out&digits/4&confbridge-dec-list-vol-out&digits/5&confbridge-rest-list-vol-out&digits/6&confbridge-inc-list-vol-out&digits/7&confbridge-dec-talk-vol-out&digits/8&confbridge-rest-talk-vol-out&digits/9&confbridge-inc-talk-vol-out)
         1 = toggle_mute
@@ -105,7 +105,7 @@ class TestConfBridgeConf(unittest.TestCase):
         8 = reset_talking_volume
         9 = increase_talking_volume
 
-        [xivo-default-admin-menu](xivo-default-user-menu)
+        [wazo-default-admin-menu](wazo-default-user-menu)
         * = playback_and_continue(dir-multi1&digits/1&confbridge-mute-out&digits/2&confbridge-lock-out&digits/3&confbridge-remove-last-out&digits/4&confbridge-dec-list-vol-out&digits/5&confbridge-rest-list-vol-out&digits/6&confbridge-inc-list-vol-out&digits/7&confbridge-dec-talk-vol-out&digits/8&confbridge-rest-talk-vol-out&digits/9&confbridge-inc-talk-vol-out)
         2 = admin_toggle_conference_lock
         3 = admin_kick_last
