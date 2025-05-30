@@ -95,7 +95,6 @@ enabled_asterisk_modules:
   res_statsd.so: false
   res_stun_monitor.so: false
   res_xmpp.so: false
-  res_freeze_check.so: false
 
 # Plugins to use to generate the configuration files
 plugins:
