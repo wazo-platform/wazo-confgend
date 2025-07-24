@@ -1,4 +1,4 @@
-# Copyright 2019-2023 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2019-2025 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -14,7 +14,7 @@ class ModulesConfGenerator:
         config = dependencies['config']
 
         asterisk_modules = config.get('enabled_asterisk_modules', {})
-        self.enabled_asterisk_modules = sorted(
+        self._disabled_asterisk_modules = sorted(
             [mod for mod, enabled in list(asterisk_modules.items()) if not enabled]
         )
 
@@ -29,5 +29,5 @@ class ModulesConfGenerator:
             logger.error('%s', e)
             content = None
         else:
-            content = template.render(modules=self.enabled_asterisk_modules)
+            content = template.render(modules=self._disabled_asterisk_modules)
         return content
