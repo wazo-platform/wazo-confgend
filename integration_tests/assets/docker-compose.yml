@@ -11,8 +11,8 @@ services:
     volumes:
       - "../..:/usr/local/src/wazo-confgend"
       - "./etc/wazo-confgend/conf.d/50-default.yml:/etc/wazo-confgend/conf.d/50-default.yml"
-      # - "${LOCAL_GIT_REPOS}/xivo-dao/xivo_dao:/opt/venv/lib/python3.9/site-packages/xivo_dao"
-      # - "${LOCAL_GIT_REPOS}/xivo-lib-python/xivo:/opt/venv/lib/python3.9/site-packages/xivo"
+      # - "${LOCAL_GIT_REPOS}/xivo-dao/xivo_dao:/opt/venv/lib/python3.11/site-packages/xivo_dao"
+      # - "${LOCAL_GIT_REPOS}/xivo-lib-python/xivo:/opt/venv/lib/python3.11/site-packages/xivo"
 
   postgres:
     image: wazoplatform/wazo-confd-db-test:local
