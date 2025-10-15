@@ -1,3 +1,2 @@
 pyhamcrest
 pytest
-unidecode==1.2.0

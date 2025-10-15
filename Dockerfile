@@ -1,4 +1,4 @@
-FROM python:3.9-slim-bullseye AS compile-image
+FROM python:3.11-slim-bookworm AS compile-image
 LABEL maintainer="Wazo Maintainers <dev@wazo.community>"
 
 RUN apt-get -qq update && apt-get -qq -y install gcc
@@ -20,7 +20,7 @@ COPY bin /usr/local/src/wazo-confgend/bin
 COPY wazo_confgend /usr/local/src/wazo-confgend/wazo_confgend
 RUN python3 -m pip install .
 
-FROM python:3.9-slim-bullseye AS build-image
+FROM python:3.11-slim-bookworm AS build-image
 COPY --from=compile-image /opt/venv /opt/venv
 
 COPY ./etc/wazo-confgend /etc/wazo-confgend
