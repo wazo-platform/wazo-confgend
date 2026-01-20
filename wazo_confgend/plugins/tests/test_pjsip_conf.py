@@ -1,4 +1,4 @@
-# Copyright 2018-2023 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2018-2026 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import unittest
@@ -270,7 +270,7 @@ class TestPJSIPConfGenerator(unittest.TestCase):
                         ['expiration', '120'],
                         [
                             'outbound_auth',
-                            'auth_reg_dev_370@wazo-dev-gateway.lan.wazo.io',
+                            'auth_reg_dev_370@gateway.example.com',
                         ],
                     ],
                     'registration_outbound_auth_section_options': [
@@ -318,7 +318,7 @@ class TestPJSIPConfGenerator(unittest.TestCase):
                 username = outbound_auth_username
                 password = secret
 
-                [auth_reg_dev_370@wazo-dev-gateway.lan.wazo.io]
+                [auth_reg_dev_370@gateway.example.com]
                 type = auth
                 username = reg_username
                 password = secret
@@ -326,7 +326,7 @@ class TestPJSIPConfGenerator(unittest.TestCase):
                 [{name_1}]
                 type = registration
                 expiration = 120
-                outbound_auth = auth_reg_dev_370@wazo-dev-gateway.lan.wazo.io
+                outbound_auth = auth_reg_dev_370@gateway.example.com
                 '''.format(
                     label_1=label_1, name_1=name_1
                 ),
