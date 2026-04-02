@@ -1,4 +1,4 @@
-# Copyright 2011-2024 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2011-2026 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 import configparser
@@ -34,7 +34,6 @@ DEFAULT_EXTENFEATURES = {
     'agentstaticlogtoggle': 'GoSub(agentstaticlogtoggle,s,1(${EXTEN:3}))',
     'bsfilter': 'GoSub(bsfilter,s,1(${EXTEN:3}))',
     'meetingjoin': 'GoSub(meetingjoin,s,1(${EXTEN:3}))',
-    'calllistening': 'GoSub(calllistening,s,1())',
     'callrecord': 'GoSub(callrecord,s,1() )',
     'directoryaccess': 'Directory(${CONTEXT})',
     'enablednd': 'GoSub(enablednd,s,1())',
