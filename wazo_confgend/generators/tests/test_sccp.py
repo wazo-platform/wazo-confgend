@@ -1,4 +1,4 @@
-# Copyright 2011-2024 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2011-2026 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -389,6 +389,7 @@ class TestSccpLineConf(unittest.TestCase):
             setvar = WAZO_CHANNEL_DIRECTION=from-wazo
             setvar = WAZO_LINE_ID=13423
             setvar = WAZO_CALLER_SIMULTCALLS=5
+            setvar = CHANNEL(hangup_handler_push)=wazo-stamp-cel-participant,s,1({uuid},tenant-uuid,13423)
             setvar = DYNAMIC_FEATURES=togglerecord
             language = fr_FR
             context = a_context
@@ -435,6 +436,7 @@ class TestSccpLineConf(unittest.TestCase):
             setvar = WAZO_CHANNEL_DIRECTION=from-wazo
             setvar = WAZO_LINE_ID=13423
             setvar = WAZO_CALLER_SIMULTCALLS=5
+            setvar = CHANNEL(hangup_handler_push)=wazo-stamp-cel-participant,s,1({uuid},tenant-uuid,13423)
             context = a_context
         ''',
         )
@@ -480,6 +482,7 @@ class TestSccpLineConf(unittest.TestCase):
             setvar = WAZO_CHANNEL_DIRECTION=from-wazo
             setvar = WAZO_LINE_ID=13423
             setvar = WAZO_CALLER_SIMULTCALLS=5
+            setvar = CHANNEL(hangup_handler_push)=wazo-stamp-cel-participant,s,1({uuid},tenant-uuid,13423)
             context = a_context
             allow = g729,ulaw
         ''',
@@ -527,6 +530,7 @@ class TestSccpLineConf(unittest.TestCase):
             setvar = WAZO_CHANNEL_DIRECTION=from-wazo
             setvar = WAZO_LINE_ID=13423
             setvar = WAZO_CALLER_SIMULTCALLS=5
+            setvar = CHANNEL(hangup_handler_push)=wazo-stamp-cel-participant,s,1({uuid},tenant-uuid,13423)
             context = a_context
             disallow = all
             allow = g729,ulaw
@@ -575,6 +579,7 @@ class TestSccpLineConf(unittest.TestCase):
             setvar = WAZO_CHANNEL_DIRECTION=from-wazo
             setvar = WAZO_LINE_ID=13423
             setvar = WAZO_CALLER_SIMULTCALLS=5
+            setvar = CHANNEL(hangup_handler_push)=wazo-stamp-cel-participant,s,1({uuid},tenant-uuid,13423)
             context = a_context
             namedcallgroup = 1,2,3,4
             namedpickupgroup = 3,4

@@ -1,4 +1,4 @@
-# Copyright 2011-2024 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2011-2026 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
@@ -194,6 +194,11 @@ class _SccpLineConf:
             ast_writer.write_option('setvar', f"WAZO_LINE_ID={item['id']}")
             ast_writer.write_option(
                 'setvar', f"WAZO_CALLER_SIMULTCALLS={item['simultcalls']}"
+            )
+            ast_writer.write_option(
+                'setvar',
+                'CHANNEL(hangup_handler_push)=wazo-stamp-cel-participant,s,1'
+                f"({item['uuid']},{item['tenant_uuid']},{item['id']})",
             )
 
             if item['enable_online_recording']:
