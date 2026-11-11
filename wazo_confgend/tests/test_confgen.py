@@ -1,13 +1,13 @@
-# Copyright 2018-2023 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2018-2026 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 
 import random
 import tempfile
 import unittest
-from unittest.mock import Mock
+from unittest.mock import Mock, call, patch
 
-from hamcrest import assert_that, calling, equal_to, raises
+from hamcrest import assert_that, calling, contains_exactly, equal_to, raises
 
 from ..confgen import Confgen, ConfgendFactory
 
@@ -113,6 +113,28 @@ class TestConfgendFactory(unittest.TestCase):
         self.handler = self.handler_factory.get.return_value
         self.get_cached_content = self.factory._get_cached_content = Mock()
         self.cache = self.factory._cache = Mock()
+
+        session_scope_patcher = patch('wazo_confgend.confgen.session_scope')
+        session_scope = session_scope_patcher.start()
+        self.addCleanup(session_scope_patcher.stop)
+        self.session = session_scope.return_value.__enter__.return_value
+
+    def test_that_the_file_is_generated_from_one_snapshot(self):
+        calls = Mock()
+        calls.attach_mock(self.session.connection, 'connection')
+        calls.attach_mock(self.handler, 'handler')
+
+        self.factory.generate('test', 'myfile.yml')
+
+        assert_that(
+            calls.mock_calls,
+            contains_exactly(
+                call.connection(
+                    execution_options={'isolation_level': 'REPEATABLE READ'}
+                ),
+                call.handler(),
+            ),
+        )
 
     def test_generate_from_handler(self):
         self.handler.return_value = 'some content'
