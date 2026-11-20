@@ -1,4 +1,4 @@
-# Copyright 2011-2024 The Wazo Authors  (see the AUTHORS file)
+# Copyright 2011-2026 The Wazo Authors  (see the AUTHORS file)
 # SPDX-License-Identifier: GPL-3.0-or-later
 
 from __future__ import annotations
@@ -117,8 +117,11 @@ class ConfgendFactory(ServerFactory):
 
     def _generate_and_cache(self, cache_key, resource, filename):
         handler = self._handler_factory.get(resource, filename)
-        with session_scope(read_only=True):
+        with session_scope(read_only=True) as session:
             try:
+                session.connection(
+                    execution_options={'isolation_level': 'REPEATABLE READ'}
+                )
                 content = handler()
                 return self._encode_and_cache(cache_key, content)
             except Exception:
